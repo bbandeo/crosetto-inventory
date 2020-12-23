@@ -1,0 +1,19 @@
+{
+  "name": "crosetto-inventory",
+  "version": "1.0.0",
+  "description": "Inventario de uso interno",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbandeo/crosetto-inventory.git"
+  },
+  "author": "Bruno Bandeo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bbandeo/crosetto-inventory/issues"
+  },
+  "homepage": "https://github.com/bbandeo/crosetto-inventory#readme"
+}
