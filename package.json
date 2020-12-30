@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/bbandeo/crosetto-inventory/issues"
   },
-  "homepage": "https://github.com/bbandeo/crosetto-inventory#readme"
+  "homepage": "https://github.com/bbandeo/crosetto-inventory#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mysql": "^2.18.1"
+  }
 }
