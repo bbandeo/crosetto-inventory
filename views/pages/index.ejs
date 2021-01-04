@@ -2,14 +2,14 @@
 <html lang="es" class="js">
 
 <head>
-  <%- include('../partials/head'); %>
+  <%- include('../static/head', {tituloSeccion: 'INDEX' }); %>
 </head>
 
 <body class="home page-template-default page page-id-798 custom-background et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css chrome" cz-shortcut-listen="true" style="overflow-x: hidden">
   <div id="page-container" style="padding-top: 104px; overflow-y: hidden; background-color: #323232">
 
     <header id="main-header" data-height-onload="104" data-height-loaded="true" data-fixed-height-onload="104" style="top: 0px">
-      <%- include('../partials/header'); %>
+      <%- include('../static/header'); %>
     </header>
 
     <main>
@@ -32,39 +32,61 @@
           </div>
           <br />
           <div class="et_pb_row et_pb_row_12">
-            <div class="et_pb_column et_pb_column_4_4 et_pb_column_47 et_pb_css_mix_blend_mode_passthrough et-last-child">
-              <div id="et_pb_contact_form_0" class="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix" data-form_unique_num="0">
-                <div class="et-pb-contact-message"></div>
+            <div id="et_pb_contact_form_0" class="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix" data-form_unique_num="0">
+              <div class="et-pb-contact-message"></div>
 
-                <div class="et_pb_contact">
-                  <form class="et_pb_contact_form clearfix" method="post" action="http://www.google.com.ar/">
-                    <p class="et_pb_contact_field et_pb_contact_field_0 et_pb_contact_field_half" data-id="name"
-                       data-type="input">
-                      <label for="et_pb_contact_name_0" class="et_pb_contact_form_label">Código</label>
-                      <input type="text" id="et_pb_contact_name_0" class="input" value="" name="et_pb_contact_name_0" data-required_mark="required" data-field_type="input" data-original_id="name" placeholder="Código" />
+
+
+
+              <div class="field is-horizontal ">
+                <div class="field-label is-normal">
+                  <label class="label has-text-light">Información</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                      <input class="input" type="text" placeholder="Código de barras">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
                     </p>
-                    <p class="et_pb_contact_field et_pb_contact_field_1 et_pb_contact_field_half et_pb_contact_field_last"
-                       data-id="email" data-type="email">
-                      <label for="et_pb_contact_email_0" class="et_pb_contact_form_label">Artículo</label>
-                      <input type="text" id="et_pb_contact_email_0" class="input" value="" name="et_pb_contact_email_0"
-                             data-required_mark="required" data-field_type="email" data-original_id="email"
-                             placeholder="Artículo" />
+                  </div>
+                  <div class="field">
+                    <p class="control is-expanded has-icons-left">
+                      <input class="input" type="text" placeholder="Artículo">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-envelope"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                      </span>
                     </p>
-                    <p class="et_pb_contact_field et_pb_contact_field_2 et_pb_contact_field_last" data-id="message"
-                       data-type="text">
-                      <label for="et_pb_contact_message_0" class="et_pb_contact_form_label">Descripcion del
-                        artículo</label>
-                      <textarea name="et_pb_contact_message_0" id="et_pb_contact_message_0"
-                                class="et_pb_contact_message input" data-required_mark="required" data-field_type="text"
-                                data-original_id="message" placeholder="Descripcion del artículo"></textarea>
-                    </p>
-                    <div class="et_contact_bottom_container">
-                      <button type="submit" name="et_builder_submit_button"
-                              class="et_pb_contact_submit et_pb_button">Enviar</button>
-                    </div>
-                  </form>
+                  </div>
                 </div>
               </div>
+
+              <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                  <label class="label has-text-light">Descripción</label>
+                </div>
+                <div class="field-body">
+                  <div class="field">
+                    <div class="control">
+                      <textarea class="textarea has-background-grey-dark input" placeholder="Descripción y/o comentarios del artículo"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="et_pb_divider_internal"></div>
+
+              <div class="et_contact_bottom_container">
+                <button type="submit" name="et_builder_submit_button" class="et_pb_contact_submit et_pb_button">Enviar</button>
+              </div>
+
+
+
+
+
             </div>
           </div>
         </div>
@@ -72,7 +94,7 @@
     </main>
 
     <footer>
-      <%- include('../partials/footer'); %>
+      <%- include('../static/footer'); %>
     </footer>
   </div>
 </body>

@@ -41,26 +41,42 @@ connection.connect((err) => {
 
 
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 
-// // HOME
-
-// index page
-
-
-
+// // HOME.
 app.get('/', (req, res) => {
+    // res.locals.user = req.session.user;
+    // res.render('pages/index');
     res.locals.user = req.session.user;
-        res.render('pages/index');
-
-    // connection.query('SELECT * from piezas', (err, results, fields) => {
-    //     if (err) throw err;
-    //     res.render('index', {
-    //         title: "Inventario",
-    //         piezas: results
-    //     });
-    // });
+    connection.query('SELECT * from products', function (error, results, fields) {
+        if (error) throw error;
+        res.render('pages/index', {
+            title: "Shop",
+            products: results
+        })
+        console.log(results);
+    });
 });
-app.listen(3000)
+
+
+app.get('/about', (req, res) => {
+    res.locals.user = req.session.user;
+    res.render('pages/about');
+});
+
+
+app.get('/ingresos', (req, res) => {
+    res.locals.user = req.session.user;
+    res.render('pages/ingresos');
+});
+
+
+app.get('/salidas', (req, res) => {
+    res.locals.user = req.session.user;
+    res.render('pages/salidas');
+});
+
+
 // // LOGIN
 // app.get('/login', (req, res) => {
 //     res.render('login', { title: "Login" });
@@ -86,3 +102,21 @@ app.listen(3000)
 //         else throw err;
 //     });
 // });
+
+
+// REGISTRO
+app.get('/registro', (req, res) => {
+    res.render('registro', { title: 'Registro' });
+});
+app.post('/registro', (req, res) => {
+    console.log(req.body);
+})
+
+
+
+
+app.use((req, res, next) => {
+    res.status(404).render("404");
+});
+
+app.listen(3000);
