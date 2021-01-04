@@ -3,21 +3,65 @@
         <span class="logo_helper"></span>
         <a href="http://PUTURIHERE/">
             <img src="../../img/Logo-Crosetto-w.png" alt="Crosetto Ingeniería S.A." id="logo"
-                data-height-percentage="60" data-actual-width="298" data-actual-height="80" />
+                 data-height-percentage="60" data-actual-width="298" data-actual-height="80" />
         </a>
     </div>
     <div id="et-top-navigation" data-height="90" data-fixed-height="60" style="padding-left: 262px">
         <nav id="top-menu-nav">
-            <ul id="top-menu" class="nav">
+            <ul id="top-menu" class="nav ">
                 <li id="0" class=""><a href="/" aria-current="page">INICIO</a></li>
-                <li id="1" class=""><a href="/ingresos" aria-current="page">ENTRADA</a>
+                <li id="1" class=""><a href="/ingresos" aria-current="page">INGRESO</a>
                 </li>
                 <li id="2" class=""><a href="/salidas" aria-current="page">SALIDA</a>
                 </li>
-                <li id="3" class=""><a href="/about" aria-current="page">ABOUT</a>
+                <!-- <li id="3" class=""><a href="/about" aria-current="page">ABOUT</a> -->
+                <!-- </li> -->
+                <li id="4" class="">
+                    <!-- <a href="/logout" aria-current="page">LOGOUT</a> -->
+                    <div class="navbar-end ">
+                        <div class="navbar-item has-dropdown is-hoverable ">
+                            <% if(locals.user){ %>
+                              <a class="navbar-link">
+                                  <%= user.username %>
+                                </a>
+                        
+                                <div class="navbar-dropdown has-background-grey-darker">
+                                  <a href="<%=baseUrl %>/orders" class="navbar-item has-background-grey-darker">
+                                    PERFIL
+                                  </a>
+                                  <hr class="navbar-divider has-background-grey-darker">
+                                  <a href="<%=baseUrl %>/logout" class="navbar-item has-background-grey-darker">
+                                    SALIR
+                                  </a>
+                                </div>
+                            <% }else { %>
+                                <a href="/login" aria-current="page">INICIAR SESION</a>
+                              <!-- <a class="navbar-link">
+                                  Login / Register
+                                </a>
+                                <div class="navbar-dropdown">
+                                  <a class="navbar-item" href="<%=baseUrl %>/login">
+                                    Login
+                                  </a>
+                                  <hr class="navbar-divider">
+                                  <a class="navbar-item" href="<%=baseUrl %>/register">
+                                    Register
+                                  </a>
+                                </div> -->
+                            <% } %>
+
+                      </div>
+                    </div>
+
+
+
+                  
+
+
+
+
                 </li>
-                <li id="4" class=""><a href="/logout" aria-current="page">LOGOUT</a>
-                </li>
+
             </ul>
         </nav>
     </div>
