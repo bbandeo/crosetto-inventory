@@ -1,68 +1,54 @@
 <div class="container clearfix et_menu_container">
-    <div class="logo_container">
-        <span class="logo_helper"></span>
-        <a href="http://PUTURIHERE/">
-            <img src="../../img/Logo-Crosetto-w.png" alt="Crosetto Ingeniería S.A." id="logo"
-                 data-height-percentage="60" data-actual-width="298" data-actual-height="80" />
+  <nav class="navbar is-dark" style="background-color: #323232;">
+    <div class="container">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="#">
+          <img src="../../img/Logo-Crosetto-w.png" alt="Crosetto Ingeniería S.A." id="logo"
+               data-height-percentage="60" data-actual-width="298" data-actual-height="80" />
         </a>
+        <span class="navbar-burger burger" data-target="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </div>
+      <div id="navMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <a class="navbar-item " href="/" aria-current="page">INICIO</a>
+          <a class="navbar-item " href="/ingresos" aria-current="page">INGRESO</a>
+          <a class="navbar-item" href="/salidas" aria-current="page">SALIDA</a>
+          <div class="navbar-item has-dropdown is-hoverable ">
+            <% if(locals.user){ %>
+              <a class="navbar-link">
+                <%= user.username %>
+              </a>
+              <div class="navbar-dropdown is-dark">
+                <a href="<%=baseUrl %>/orders" class="navbar-item is-dark">
+                  PERFIL
+                </a>
+                <hr class="navbar-divider is-dark">
+                <a href="<%=baseUrl %>/logout" class="navbar-item is-dark">
+                  SALIR
+                </a>
+              </div>
+              <% }else { %>
+                <a href="/login" aria-current="page">INICIAR SESION</a>
+                <% } %>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="et-top-navigation" data-height="90" data-fixed-height="60" style="padding-left: 262px">
-        <nav id="top-menu-nav">
-            <ul id="top-menu" class="nav ">
-                <li id="0" class=""><a href="/" aria-current="page">INICIO</a></li>
-                <li id="1" class=""><a href="/ingresos" aria-current="page">INGRESO</a>
-                </li>
-                <li id="2" class=""><a href="/salidas" aria-current="page">SALIDA</a>
-                </li>
-                <!-- <li id="3" class=""><a href="/about" aria-current="page">ABOUT</a> -->
-                <!-- </li> -->
-                <li id="4" class="">
-                    <!-- <a href="/logout" aria-current="page">LOGOUT</a> -->
-                    <div class="navbar-end ">
-                        <div class="navbar-item has-dropdown is-hoverable ">
-                            <% if(locals.user){ %>
-                              <a class="navbar-link">
-                                  <%= user.username %>
-                                </a>
-                        
-                                <div class="navbar-dropdown has-background-grey-darker">
-                                  <a href="<%=baseUrl %>/orders" class="navbar-item has-background-grey-darker">
-                                    PERFIL
-                                  </a>
-                                  <hr class="navbar-divider has-background-grey-darker">
-                                  <a href="<%=baseUrl %>/logout" class="navbar-item has-background-grey-darker">
-                                    SALIR
-                                  </a>
-                                </div>
-                            <% }else { %>
-                                <a href="/login" aria-current="page">INICIAR SESION</a>
-                              <!-- <a class="navbar-link">
-                                  Login / Register
-                                </a>
-                                <div class="navbar-dropdown">
-                                  <a class="navbar-item" href="<%=baseUrl %>/login">
-                                    Login
-                                  </a>
-                                  <hr class="navbar-divider">
-                                  <a class="navbar-item" href="<%=baseUrl %>/register">
-                                    Register
-                                  </a>
-                                </div> -->
-                            <% } %>
+  </nav>
+  <script type="text/javascript">
+    (function () {
+      let burger = document.querySelector('.burger');
+      let nav = document.querySelector('#' + burger.dataset.target);
 
-                      </div>
-                    </div>
-
-
-
-                  
-
-
-
-
-                </li>
-
-            </ul>
-        </nav>
-    </div>
-</div>
+      burger.addEventListener('click', () => {
+        burger.classList.toggle('is-active');
+        nav.classList.toggle('is-active');
+        // nav.classList.toggle('has-text-warning');
+        nav.style.backgroundColor = "#323232";
+      });
+    })();
+  </script>

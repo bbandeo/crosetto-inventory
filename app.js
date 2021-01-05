@@ -24,13 +24,13 @@ let pwVerify = (pwd, hash) => {
 // STATIC
 app.use(express.static('public'));
 
+// MySQL
 let connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'asrs2017',
     database: 'warehouse'
 });
-
 connection.connect((err) => {
     if (err) {
         console.log("No se puede conectar a base de datos MySQL");
@@ -39,7 +39,7 @@ connection.connect((err) => {
     console.log("Conectado a base de datos");
 });
 
-
+// APP
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
@@ -58,24 +58,20 @@ app.get('/', (req, res) => {
     });
 });
 
-
 app.get('/about', (req, res) => {
     res.locals.user = req.session.user;
     res.render('pages/about', { title: 'About' });
 });
-
 
 app.get('/ingresos', (req, res) => {
     res.locals.user = req.session.user;
     res.render('pages/ingresos', { title: 'Ingresos' });
 });
 
-
 app.get('/salidas', (req, res) => {
     res.locals.user = req.session.user;
     res.render('pages/salidas', { title: 'Salida' });
 });
-
 
 // LOGIN
 app.get('/login', (req, res) => {
@@ -84,7 +80,6 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     console.log(req.body);
     let usr = req.body;
-    // Cambiar customers por usuarios
     connection.query(`SELECT * from usuarios where username="${usr.uname}"`, (err, rows, fields) => {
         if (!err) {
             console.log('The solution is: ', rows[0]);
@@ -135,6 +130,7 @@ app.post('/registro', function (req, res) {
 
 
 app.use((req, res, next) => {
+    res.locals.user = req.session.user;
     res.status(404).render('pages/404', { title: "ERROR 404"});
 });
 

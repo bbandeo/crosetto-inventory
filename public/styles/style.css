@@ -1530,6 +1530,7 @@ nav.et-menu-nav {
   display: inline-block;
   font-size: 14px;
   padding-right: 22px;
+  margin-top: 12px;
 }
 #top-menu > li:last-child {
   padding-right: 0;
