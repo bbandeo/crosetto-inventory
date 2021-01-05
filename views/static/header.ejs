@@ -17,13 +17,14 @@
           <a class="navbar-item " href="/" aria-current="page">INICIO</a>
           <a class="navbar-item " href="/ingresos" aria-current="page">INGRESO</a>
           <a class="navbar-item" href="/salidas" aria-current="page">SALIDA</a>
-          <div class="navbar-item has-dropdown is-hoverable ">
-            <% if(locals.user){ %>
+          <% if(locals.user){ %>
+
+            <div class="navbar-item has-dropdown is-hoverable ">
               <a class="navbar-link">
                 <%= user.username %>
               </a>
               <div class="navbar-dropdown is-dark">
-                <a href="<%=baseUrl %>/orders" class="navbar-item is-dark">
+                <a href="<%=baseUrl %>/perfil" class="navbar-item is-dark">
                   PERFIL
                 </a>
                 <hr class="navbar-divider is-dark">
@@ -31,10 +32,10 @@
                   SALIR
                 </a>
               </div>
-              <% }else { %>
-                <a href="/login" aria-current="page">INICIAR SESION</a>
-                <% } %>
-          </div>
+            </div>
+            <% }else { %>
+              <a class="navbar-item is-dark" href="/login" aria-current="page">INICIAR SESION</a>
+              <% } %>
         </div>
       </div>
     </div>

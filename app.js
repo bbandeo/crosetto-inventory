@@ -80,6 +80,8 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
     console.log(req.body);
     let usr = req.body;
+    usr.uname = usr.uname.toUpperCase();
+    console.log(usr.uname);
     connection.query(`SELECT * from usuarios where username="${usr.uname}"`, (err, rows, fields) => {
         if (!err) {
             console.log('The solution is: ', rows[0]);
@@ -87,7 +89,7 @@ app.post('/login', (req, res) => {
                 console.log("Login exitoso");
                 req.session.user = {
                     id: rows[0].id,
-                    username: rows[0].username,
+                    username: rows[0].username.toUpperCase(),
                 };
                 res.redirect('/');
             } else {
@@ -109,29 +111,43 @@ app.get('/registro', (req, res) => {
 app.post('/registro', function (req, res) {
     console.log(req.body)
     let usr = req.body
+    usr.uname = usr.uname.toUpperCase();
     let pwwd = pwHash(usr.pwd)
-    connection.query(`SELECT * from usuarios where username="${usr.uname}"`, function (err, rows, fields) {
-        if (rows.length <= 0) {
-            //no user with specified username
-            connection.query(`INSERT into usuarios(username, password) values("${usr.uname}","${pwwd}")`, function (err, rows, fields) {
-                if (!err) {
-                    res.redirect('/login');
-                } else {
-                    console.log(err)
-                    res.render('pages/registro', { title: "Some error occurred", failed: true })
-                }
-            })
-        } else {
-            res.render('pages/registro', { title: "Username already in use", failed: true })
-        }
-    });
+    if (usr.token == "asrs"){
+        connection.query(`SELECT * from usuarios where username="${usr.uname}"`, function (err, rows, fields) {
+            if (rows.length <= 0) {
+                //no user with specified username
+                connection.query(`INSERT into usuarios(username, password) values("${usr.uname}","${pwwd}")`, function (err, rows, fields) {
+                    if (!err) {
+                        res.redirect('/login');
+                    } else {
+                        console.log(err)
+                        res.render('pages/registro', { title: "Ocurrió un error", failed: true })
+                    }
+                })
+            } else {
+                res.render('pages/registro', { title: "Nombre de usuario ya se encuentra en uso", failed: true })
+            }
+        });
+    }    
+    else {
+        res.render('pages/registro', { title: "Token inválido", failed: true })
+    }
 })
 
-
+//log out
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  })
 
 app.use((req, res, next) => {
     res.locals.user = req.session.user;
     res.status(404).render('pages/404', { title: "ERROR 404"});
 });
 
-app.listen(3000);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log("Server started at port " + port)
+  console.log("http://localhost:" + port)
+})

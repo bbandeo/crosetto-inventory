@@ -18,7 +18,7 @@
           font-weight: 300;
         }
         body {
-            background: #F2F6FA;
+            background: #323232;
         }
         .hero-body {
             padding-top: 0;
@@ -27,7 +27,7 @@
             margin-top: -20px;
         }
         .hero.is-success {
-          background: #F2F6FA;
+          background: #323232;
         }
         .hero .nav, .hero.is-success .nav {
           -webkit-box-shadow: none;
@@ -48,29 +48,29 @@
         </style>
         <% 
         var animClass = ""
-        if(typeof failed != 'undefined') 
-            animClass = "animated shake"
+        if(typeof failed != 'undefined')
+          animClass = "animated shake"
         %>
         <section class="hero is-success is-fullheight">
             <div class="hero-body">
                 <div class="container is-fullhd has-text-centered">
                     <div class="column is-4 is-offset-4">
-                        <h3 class="title has-text-grey"><%=title %></h3>
-                        <p class="subtitle has-text-grey">Please login to proceed.</p>
+                        <h3 class="title has-text-light-grey"><%=title %></h3>
+                        <p class="subtitle has-text-light-grey">Ingresa tu nombre de usuario y contraseña.</p>
                         <div class="box <%=animClass %>">
                             <form action="/login" method="post">
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input is-large" name="uname" type="text" placeholder="Username" autofocus="">
+                                        <input class="input is-large" name="uname" type="text" placeholder="Usuario" autofocus="">
                                     </div>
                                 </div>
         
                                 <div class="field">
                                     <div class="control">
-                                        <input class="input is-large" name="pwd" type="password" placeholder="Your Password">
+                                        <input class="input is-large" name="pwd" type="password" placeholder="Contraseña">
                                     </div>
                                 </div>
-                                <button class="button is-block is-info is-large is-fullwidth">Login</button>
+                                <button class="button is-block is-warning is-large is-fullwidth">Login</button>
                             </form>
                         </div>
                     </div>
