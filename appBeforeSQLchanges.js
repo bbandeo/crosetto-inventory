@@ -48,20 +48,21 @@ app.set('views', __dirname + '/views');
 
 // // HOME.
 app.get('/', (req, res) => {
+    // res.locals.user = req.session.user;
+    // res.render('pages/index');
     if (req.session.user == undefined) {
         res.redirect('/login');
     } else {
-
         res.locals.user = req.session.user;
-        connection.query('SELECT * from info_articulo', function (error, results, fields) {
-            console.log(results)
+        connection.query('SELECT * from products', function (error, results, fields) {
             if (error) throw error;
             res.render('pages/index', {
                 title: "INDEX",
-                articulo: results
+                products: results
             });
         });
     }
+
 });
 
 app.get('/about', (req, res) => {
@@ -72,30 +73,6 @@ app.get('/about', (req, res) => {
 app.get('/ingresos', (req, res) => {
     res.locals.user = req.session.user;
     res.render('pages/ingresos', { title: 'Ingresos' });
-
-    let data = req.body;
-    console.log(data);
-    console.log(req.session.user);
-});
-app.post('/ingresos', (req, res) => {
-    let data = req.body;
-    let user = req.session.user
-    console.log(data);
-    console.log(req.session.user);
-    if (user != undefined) {
-        connection.query(`INSERT into articulo(codbar,descripcion,nombre,operario_ingreso) values('${data.codbar}','${data.articulo_name}','${data.descripcion}','${user.id}')`, function (error, results, fields) {
-            if (!error) {
-                console.log("Agregado exitosamente!");
-                res.redirect('pages/ingresos');
-            } else {
-                console.log(error);
-                res.render('pages/ingresos', { title: 'Falló' });
-            }
-        });
-    } else {
-        res.redirect('/login');
-    }
-
 });
 
 app.get('/salidas', (req, res) => {
@@ -112,7 +89,7 @@ app.post('/login', (req, res) => {
     let usr = req.body;
     usr.uname = usr.uname.toUpperCase();
     console.log(usr.uname);
-    connection.query(`SELECT * from operario where username="${usr.uname}"`, (err, rows, fields) => {
+    connection.query(`SELECT * from usuarios where username="${usr.uname}"`, (err, rows, fields) => {
         if (!err) {
             console.log('The solution is: ', rows[0]);
             if (typeof rows[0] != 'undefined' && pwVerify(usr.pwd, rows[0].password)) {
@@ -144,12 +121,12 @@ app.post('/registro', function (req, res) {
     usr.uname = usr.uname.toUpperCase();
     let pwwd = pwHash(usr.pwd)
     if (usr.token == process.env.TOKEN) {
-        connection.query(`SELECT * from operario where username="${usr.uname}"`, function (err, rows, fields) {
+        connection.query(`SELECT * from usuarios where username="${usr.uname}"`, function (err, rows, fields) {
             if (rows.length <= 0) {
                 //no user with specified username
-                connection.query(`INSERT into operario(username, password) values("${usr.uname}","${pwwd}")`, function (err, rows, fields) {
+                connection.query(`INSERT into usuarios(username, password) values("${usr.uname}","${pwwd}")`, function (err, rows, fields) {
                     if (!err) {
-                        res.render('pages/login', { title: "Registro exitoso!" });
+                        res.render('pages/login', {title: "Registro exitoso!"});
                     } else {
                         console.log(err)
                         res.render('pages/registro', { title: "Ocurrió un error", failed: true })
