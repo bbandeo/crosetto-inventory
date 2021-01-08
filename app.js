@@ -7,9 +7,12 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
+
 app.locals.baseUrl = "http://localhost:3000";
 app.use(session({ secret: 'very secret' }));
+app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.text({ type: "text/plain" })); // use this instead
 
 let pwHash = (pwd) => {
     return bcrypt.hashSync(pwd, 10);
@@ -24,6 +27,7 @@ let pwVerify = (pwd, hash) => {
 }
 
 // STATIC
+
 app.use(express.static('public'));
 
 // MySQL
@@ -95,7 +99,13 @@ app.post('/ingresos', (req, res) => {
     } else {
         res.redirect('/login');
     }
-
+});
+app.get('/ingresos/codbar', (req, res) => {
+    console.log("LLAMA QUE LLAMA")
+    // let data = req;
+    let codbar = req.body;
+    // console.log(data);
+    console.log({ codbar });
 });
 
 app.get('/salidas', (req, res) => {
