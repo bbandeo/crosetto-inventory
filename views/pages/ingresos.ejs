@@ -74,7 +74,7 @@
     <script>
       function checkit() {
         console.log("CALL!!");
-        codbar = document.getElementById("codbar").value;
+        let codbar = document.getElementById("codbar").value;
         if (codbar.length != 10) {
           document.getElementById("doWarn").innerHTML = "Incorrect";
           return;
@@ -98,12 +98,12 @@
               // }
             } else console.log("Request unsuccessfull " + xmlhttp.status);
           };
- 
+          console.log(codbar)
           xmlhttp.responseType = "arraybuffer";
           console.log('app0');
           xmlhttp.open("GET", "/ingresos/codbar", true);
           xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-          xmlhttp.send(document.getElementById("codbar".value));
+          xmlhttp.send(codbar);
         }
       }
 

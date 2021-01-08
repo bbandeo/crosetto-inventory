@@ -7,12 +7,16 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
+var cors = require('cors')
+
+
 
 app.locals.baseUrl = "http://localhost:3000";
 app.use(session({ secret: 'very secret' }));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(bodyParser.text({ type: "text/plain" })); // use this instead
+app.use(cors())
 
 let pwHash = (pwd) => {
     return bcrypt.hashSync(pwd, 10);
@@ -103,10 +107,11 @@ app.post('/ingresos', (req, res) => {
 app.get('/ingresos/codbar', (req, res) => {
     console.log("LLAMA QUE LLAMA")
     // let data = req;
-    let codbar = req.body;
+    let codbar = req.body.codbar;
     // console.log(data);
     console.log({ codbar });
 });
+
 
 app.get('/salidas', (req, res) => {
     res.locals.user = req.session.user;
