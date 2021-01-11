@@ -4,18 +4,24 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const mysql = require('mysql');
 const app = express();
+const cors = require('cors')
 const dotenv = require('dotenv');
 dotenv.config();
 
-var cors = require('cors')
 
-
+const dbhost = process.env.MYSQL_HOST || 'localhost';
+const dbuser = process.env.MYSQL_USER || 'root';
+const dbpassword = process.env.MYSQL_PASS || '';
+const database = process.env.MYSQL_DB || 'crosetto';
+const reg_token = process.env.TOKEN || '';
+const host = process.env.HOST || 'localhost';
+const port = process.env.PORT || 3000;
 
 app.locals.baseUrl = "http://localhost:3000";
 app.use(session({ secret: 'very secret' }));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(bodyParser.text({ type: "text/plain" })); // use this instead
+app.use(bodyParser.text({ type: "text/plain" })); // use this instead
 app.use(cors())
 
 let pwHash = (pwd) => {
@@ -35,11 +41,11 @@ let pwVerify = (pwd, hash) => {
 app.use(express.static('public'));
 
 // MySQL
-let connection = mysql.createConnection({
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASS,
-    database: process.env.MYSQL_DB
+const connection = mysql.createConnection({
+    host: dbhost,
+    user: dbuser,
+    password: dbpassword,
+    database: database
 });
 
 connection.connect((err) => {
@@ -59,10 +65,9 @@ app.get('/', (req, res) => {
     if (req.session.user == undefined) {
         res.redirect('/login');
     } else {
-
         res.locals.user = req.session.user;
         connection.query('SELECT * from info_articulo', function (error, results, fields) {
-            console.log(results)
+            // console.log(results)
             if (error) throw error;
             res.render('pages/index', {
                 title: "INDEX",
@@ -104,14 +109,43 @@ app.post('/ingresos', (req, res) => {
         res.redirect('/login');
     }
 });
-app.get('/ingresos/codbar', (req, res) => {
-    console.log("LLAMA QUE LLAMA")
-    // let data = req;
-    let codbar = req.body.codbar;
-    // console.log(data);
-    console.log({ codbar });
+app.post('/ingresos/codbar', (req, res) => {
+    let data = req.body;
+    connection.query(`SELECT * FROM info_articulo WHERE codbar="${data}"`, (err, rows, fields) => {
+        if (!err) {
+            if(rows.length == 0){
+                res.status(404).send("404");
+            } else {
+                const result = rows[0];
+                const ans = `${result['marca']}-${result['modelo']}-${result['tamano']}`
+                console.log("🍕");
+                console.log(ans);
+                res.status(200).send(ans);
+            }
+        }
+        res.status(404);
+    });
+
 });
 
+app.post('/insert', (req, res) => {
+    let data = req.body;
+    console.log(data);
+    // console.log(req.session.user);
+    // if (user != undefined) {
+    //     connection.query(`INSERT into articulo(codbar,descripcion,nombre,operario_ingreso) values('${data.codbar}','${data.articulo_name}','${data.descripcion}','${user.id}')`, function (error, results, fields) {
+    //         if (!error) {
+    //             console.log("Agregado exitosamente!");
+    //             res.redirect('pages/ingresos');
+    //         } else {
+    //             console.log(error);
+    //             res.render('pages/ingresos', { title: 'Falló' });
+    //         }
+    //     });
+    // } else {
+        res.redirect('/');
+    // }
+});
 
 app.get('/salidas', (req, res) => {
     res.locals.user = req.session.user;
@@ -158,7 +192,7 @@ app.post('/registro', function (req, res) {
     let usr = req.body
     usr.uname = usr.uname.toUpperCase();
     let pwwd = pwHash(usr.pwd)
-    if (usr.token == process.env.TOKEN) {
+    if (usr.token == reg_token) {
         connection.query(`SELECT * from operario where username="${usr.uname}"`, function (err, rows, fields) {
             if (rows.length <= 0) {
                 //no user with specified username
@@ -191,8 +225,7 @@ app.use((req, res, next) => {
     res.status(404).render('pages/404', { title: "ERROR 404" });
 });
 
-const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log("Server started at port " + port)
-    console.log(`http://${process.env.HOST}:${port}`)
+    console.log(`http://${host}:${port}`)
 });

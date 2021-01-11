@@ -5,14 +5,18 @@
   <%- include('../static/head', {tituloSeccion: title}); %>
 </head>
 
-<body class="home page-template-default page page-id-798 custom-background et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css chrome" cz-shortcut-listen="true" style="overflow-x: hidden">
+<body class="home page-template-default page page-id-798 custom-background et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css chrome"
+      cz-shortcut-listen="true" style="overflow-x: hidden">
   <div id="page-container" style="padding-top: 104px; overflow-y: hidden; background-color: #323232">
 
     <header id="main-header" data-height-onload="104" data-height-loaded="true" data-fixed-height-onload="104" style="top: 0px">
       <%- include('../static/header'); %>
     </header>
 
+
     <main>
+
+
       <div id="et-main-area">
         <div id="main-content">
           <!-- <div class="et_pb_section et_pb_section_4 et_pb_with_background et_section_regular"></div> -->
@@ -26,72 +30,147 @@
                 </div>
               </div>
               <div class="et_pb_module et_pb_divider et_pb_divider_2 et_pb_space">
-                <div class="et_pb_divider_internal"></div>
+                <!-- <div class="et_pb_divider_internal"></div> -->
               </div>
             </div>
           </div>
           <br />
-          <div class="et_pb_row et_pb_row_12">
-            <div id="et_pb_contact_form_0" class="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix" data-form_unique_num="0">
-              <div class="et-pb-contact-message"></div>
+
+            <div class="et_pb_row et_pb_row_2">
 
 
+              <form method="post" action="/insert" id="insert"></form>
+              <div id="et_pb_contact_form_0" class="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix" data-form_unique_num="0">
+                <div class="et-pb-contact-message"></div>
+                <br>
 
 
-              <div class="field is-horizontal ">
-                <div class="field-label is-normal">
-                  <label class="label has-text-light">Información</label>
-                </div>
-                <div class="field-body">
-                  <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                      <input class="input" type="text" placeholder="Código de barras">
+                <div class="field columns">
+                  <!-- <div class="column auto"></div> -->
+                  <div class="column is-four-fifths">
+                    <!-- Código de barras -->
+                    <p class="control has-icons-left">
+                      <input class="input" type="" id="codbar" placeholder="Código de barras" onfocusout="checkit()" />
                       <span class="icon is-small is-left">
                         <i class="fas fa-user"></i>
                       </span>
                     </p>
                   </div>
-                  <div class="field">
-                    <p class="control is-expanded has-icons-left">
-                      <input class="input" type="text" placeholder="Artículo">
+                  <!-- <3591> - border-color: #e6ad30; -->
+                  <div class="column has-text-grey-lighter">
+                    <!-- Cantidad -->
+                    <p class="control has-icons-left">
+                      <input class="input" id="cantidad" type="number" placeholder="Cantidad" required>
+                      <i class="fas fa-check"></i>
+                      <!-- </span> -->
+                    </p>
+                  </div>
+                  <!-- <div class="column auto"></div> -->
+                </div>
+
+                <div class="field columns ">
+                  <!-- <div class="column auto"></div> -->
+                  <div class="column is-half  has-text-grey-lighter">
+                    <p class="control has-icons-left">
+                      <input class="input" id="articulo_name" name="articulo_name" type="text" placeholder="Marca" disabled>
                       <span class="icon is-small is-left">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-user"></i>
                       </span>
-                      <span class="icon is-small is-right">
-                        <i class="fas fa-check"></i>
+                    </p>
+                  </div>
+                  <div class="column is-half has-text-grey-lighter field control">
+                    <p class="control has-icons-left field">
+                      <input class="input" id="modelo" name="modelo" type="text" placeholder="Modelo" disabled />
+                      <i class="fas fa-check"></i>
                       </span>
                     </p>
                   </div>
                 </div>
-              </div>
 
-              <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                  <label class="label has-text-light">Descripción</label>
-                </div>
-                <div class="field-body">
-                  <div class="field">
-                    <div class="control">
-                      <textarea class="textarea has-background-grey-dark input has-fixed-size" placeholder="Descripción y/o comentarios del artículo"></textarea>
+
+                <div class="field is-horizontal">
+                  <div class="field-body">
+                    <div class="field has-text-grey-lighter">
+                      <!-- Descripción y/o comentarios del artículo -->
+                      <div class="control">
+                        <textarea class="textarea has-background-grey-dark input has-fixed-size " id="descripcion" name="descripcion" placeholder="Comentarios" style="padding-left: 32px"></textarea>
+                      </div>
                     </div>
                   </div>
                 </div>
+
+
+
+
+                <div class="et_pb_divider_internal"></div>
+                <div class="et_contact_bottom_container">
+                  <button type="submit" name="et_builder_submit_button" form="insert" class="et_pb_contact_submit et_pb_button">Enviar</button>
+                </div>
               </div>
-              <div class="et_pb_divider_internal"></div>
-
-              <div class="et_contact_bottom_container">
-                <button type="submit" name="et_builder_submit_button" class="et_pb_contact_submit et_pb_button">Enviar</button>
-              </div>
-
-
-
-
 
             </div>
           </div>
         </div>
-      </div>
+      </form>
+      <style>
+        ::-webkit-input-placeholder {
+          font-size: 13px;
+        }
+
+        ::-moz-placeholder {
+          font-size: 13px;
+        }
+
+        :-ms-input-placeholder {
+          font-size: 13px;
+        }
+
+        ::placeholder {
+          font-size: 0.8 rem;
+        }
+      </style>
     </main>
+    <script>
+      function checkit() {
+        console.log("CALL!!");
+        let codbar = document.getElementById("codbar").value;
+        // if (codbar.length < 2) {
+        // return;
+        // } else {
+        let xmlhttp = new XMLHttpRequest();
+
+        console.log(codbar)
+        xmlhttp.responseType = "text";
+        console.log('app0');
+        xmlhttp.open("POST", "/ingresos/codbar", true);
+        xmlhttp.setRequestHeader("Content-Type", "text/plain");
+        xmlhttp.send(codbar);
+
+        xmlhttp.onreadystatechange = function () {
+          if (this.readyState == 4 && this.status == 200) {
+            result = this.responseText;
+            console.log(this.status);
+            if (result != '') {
+              result = result.split('-');
+              document.getElementById("articulo_name").value = result[0];
+              document.getElementById("articulo_name").parentElement.className = "control has-icons-left et_pb_contact_form_container";
+              document.getElementById("modelo").value = result[1];
+              document.getElementById("modelo").parentElement.className = "control has-icons-left et_pb_contact_form_container";
+              document.getElementById("descripcion").value = result[2];
+            }
+          } else {
+            document.getElementById("articulo_name").value = '';
+            document.getElementById("articulo_name").parentElement.className = 'control has-icons-left';
+
+            document.getElementById("modelo").value = '';
+            document.getElementById("modelo").parentElement.className = 'control has-icons-left';
+            document.getElementById("descripcion").value = '';
+          }
+        };
+      }
+            // }
+            // Auto-Complete Text from Database | AJAX | MySQL | PHP | JS |  ---->  https://www.youtube.com/watch?v=V1r8_ROid6M
+    </script>
 
     <footer>
       <%- include('../static/footer'); %>
