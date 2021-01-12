@@ -98,8 +98,6 @@ CREATE TABLE `articulo` (
   `nombre` varchar(50),
   `operario_ingreso` int NOT NULL,
   `operario_retiro` int,
-  `fecha_alta` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `fecha_baja` timestamp,
   `subconjunto` int,
   `ubicacion_almacen` int,
   `proveedor_` int,
