@@ -14,130 +14,23 @@
     </header>
 
     <main>
-      <div id="et-main-area">
-        <div id="main-content">
-          <div id="contacto" class="et_pb_row et_pb_row_10 et_pb_row_fullwidth">
-            <br />
-            <br />
-            <div class="et_pb_column et_pb_column_4_4 et_pb_column_43 et_pb_css_mix_blend_mode_passthrough et-last-child">
-              <div class="et_pb_module et_pb_text et_pb_text_3 et_pb_text_align_left et_pb_bg_layout_dark">
-                <div class="et_pb_text_inner">
-                  <h1 style="text-align: right; margin-right: 0%;">Ingreso de artículos</h1>
-                </div>
-              </div>
-              <div class="et_pb_module et_pb_divider et_pb_divider_2 et_pb_space">
-              </div>
-            </div>
-          </div>
-          <br />
-
-          <div class="et_pb_row et_pb_row_2 et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix">
-            <br>
-            <form method="post" action="/insert" id="insert">
-              <div class="field columns">
-                <div class="column is-four-fifths">
-                  <p class="control has-icons-left">
-                    <input class="input" type="" id="codbar" name="codbar" placeholder="Código de barras" onfocusout="checkit()" />
-                  </p>
-                </div>
-                <!-- <3591> - border-color: #e6ad30; -->
-                <div class="field column">
-                  <p class="control has-icons-left">
-                    <input class="input" id="cantidad" name="cantidad" type="number" placeholder="Cantidad" required>
-                  </p>
-                </div>
-              </div>
-
-              <div class="field columns ">
-                <div class="column is-half">
-                  <p class="control has-icons-left">
-                    <input class="input" id="marca" name="marca" type="text" placeholder="Marca">
-                  </p>
-                </div>
-                <div class="column is-half has-text-grey-lighter field control">
-                  <p class="control has-icons-left field">
-                    <input class="input" id="modelo" name="modelo" type="text" placeholder="Modelo" />
-                    </span>
-                  </p>
-                </div>
-              </div>
-
-              <div class="field is-horizontal">
-                <div class="field-body">
-                  <div class="field has-text-grey-lighter">
-                    <div class="control">
-                      <textarea class="textarea has-background-grey-dark input has-fixed-size " id="descripcion" name="descripcion" placeholder="Comentarios" style="padding-left: 32px"></textarea>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </form>
-
-            <div class="et_pb_divider_internal"></div>
-            <div class="et_contact_bottom_container">
-              <button type="submit" name="et_builder_submit_button" form="insert" class="et_pb_contact_submit et_pb_button">Enviar</button>
-            </div>
-          </div>
+      <div id="et-main-area" >
+        <div id="main-content" class="center">
+          <img src="../../img/Almacenes-baja-temperatura.jpg" style="
+          border-radius: 2%; opacity: 90%;" alt="Crosetto Ingeniería S.A." />
         </div>
-        <style>
-          ::-webkit-input-placeholder {
-            font-size: 13px;
-          }
-
-          ::-moz-placeholder {
-            font-size: 13px;
-          }
-
-          :-ms-input-placeholder {
-            font-size: 13px;
-          }
-
-          ::placeholder {
-            font-size: 0.8 rem;
-          }
-        </style>
+      </div>
+      <style>
+        .center {
+          display: block;
+          margin-top: 5rem;
+          margin-left: auto;
+          margin-right: auto;
+          width: 30%;
+        }
+      </style>
     </main>
-    <script>
-      function checkit() {
-        console.log("CALL!!");
-        let codbar = document.getElementById("codbar").value;
-        // if (codbar.length < 2) {
-        // return;
-        // } else {
-        let xmlhttp = new XMLHttpRequest();
 
-        console.log(codbar)
-        xmlhttp.responseType = "text";
-        console.log('app0');
-        xmlhttp.open("POST", "/ingresos/codbar", true);
-        xmlhttp.setRequestHeader("Content-Type", "text/plain");
-        xmlhttp.send(codbar);
-
-        xmlhttp.onreadystatechange = function () {
-          if (this.readyState == 4 && this.status == 200) {
-            result = this.responseText;
-            console.log(this.status);
-            if (result != '') {
-              result = result.split('-');
-              document.getElementById("marca").value = result[0];
-              document.getElementById("marca").parentElement.className = "control has-icons-left et_pb_contact_form_container";
-              document.getElementById("modelo").value = result[1];
-              document.getElementById("modelo").parentElement.className = "control has-icons-left et_pb_contact_form_container";
-              document.getElementById("descripcion").value = result[2];
-            }
-          } else {
-            document.getElementById("marca").value = '';
-            document.getElementById("marca").parentElement.className = 'control has-icons-left';
-
-            document.getElementById("modelo").value = '';
-            document.getElementById("modelo").parentElement.className = 'control has-icons-left';
-            document.getElementById("descripcion").value = '';
-          }
-        };
-      }
-            // }
-            // Auto-Complete Text from Database | AJAX | MySQL | PHP | JS |  ---->  https://www.youtube.com/watch?v=V1r8_ROid6M
-    </script>
 
     <footer>
       <%- include('../static/footer'); %>

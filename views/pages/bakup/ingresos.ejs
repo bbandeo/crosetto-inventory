@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es" class="js">
+
+<head>
+  <%- include('../static/head', {tituloSeccion: title}); %>
+</head>
+
+<body class="home page-template-default page page-id-798 custom-background et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css chrome" cz-shortcut-listen="true" style="overflow-x: hidden">
+  <div id="page-container" style="padding-top: 104px; overflow-y: hidden; background-color: #323232">
+
+    <header id="main-header" data-height-onload="104" data-height-loaded="true" data-fixed-height-onload="104" style="top: 0px">
+      <%- include('../static/header'); %>
+    </header>
+
+    <main>
+      <div id="et-main-area">
+        <div id="main-content">
+          <!-- <div class="et_pb_section et_pb_section_4 et_pb_with_background et_section_regular"></div> -->
+          <div id="contacto" class="et_pb_row et_pb_row_10 et_pb_row_fullwidth">
+            <br />
+            <br />
+            <div class="et_pb_column et_pb_column_4_4 et_pb_column_43 et_pb_css_mix_blend_mode_passthrough et-last-child">
+              <div class="et_pb_module et_pb_text et_pb_text_3 et_pb_text_align_left et_pb_bg_layout_dark">
+                <div class="et_pb_text_inner">
+                  <h1 style="text-align: right">Ingreso de artículos</h1>
+                </div>
+              </div>
+              <div class="et_pb_module et_pb_divider et_pb_divider_2 et_pb_space">
+                <div class="et_pb_divider_internal"></div>
+              </div>
+            </div>
+          </div>
+          <div class="alert alert-warning et_pb_text_inner et_pb_bg_layout_dark" id="doWarn" style="text-align: center;">
+            Insert Data
+          </div>
+          <br />
+          <div class="et_pb_row et_pb_row_12">
+            <div class="et_pb_column et_pb_column_4_4 et_pb_column_47 et_pb_css_mix_blend_mode_passthrough et-last-child">
+              <div id="et_pb_contact_form_0" class="et_pb_module et_pb_contact_form_0 et_pb_contact_form_container clearfix" data-form_unique_num="0">
+                <div class="et-pb-contact-message"></div>
+
+                <div class="et_pb_contact">
+                  <form class="et_pb_contact_form clearfix" method="post" action="/ingresos">
+                    <p class="et_pb_contact_field et_pb_contact_field_0 et_pb_contact_field_half" data-id="codbar"
+                       data-type="input">
+                      <label for="codbar" class="et_pb_contact_form_label">Código</label>
+                      <input type="text" id="codbar" class="input" value="" name="codbar" data-field_type="input" data-original_id="name" placeholder="Código" onfocusout="checkit()" />
+                    </p>
+                    <p class="et_pb_contact_field et_pb_contact_field_1 et_pb_contact_field_half et_pb_contact_field_last"
+                       data-id="articulo" data-type="input">
+                      <label for="articulo_name" class="et_pb_contact_form_label">Artículo</label>
+                      <input type="text" id="articulo_name" class="input" value="" name="articulo_name" placeholder="Artículo" />
+                    </p>
+                    <p class="et_pb_contact_field et_pb_contact_field_2 et_pb_contact_field_last" data-id="message"
+                       data-type="text">
+                      <label for="descripcion" class="et_pb_contact_form_label">Descripcion del
+                        artículo</label>
+                      <textarea name="descripcion" id="descripcion"
+                                class="et_pb_contact_message input" data-field_type="text"
+                                data-original_id="message" placeholder="Descripcion del artículo"></textarea>
+                    </p>
+                    <div class="et_contact_bottom_container">
+                      <button type="submit" name="et_builder_submit_button"
+                              class="et_pb_contact_submit et_pb_button">Enviar</button>
+                    </div>
+                  </form>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="et_pb_contact">
+                  <form class="et_pb_contact_form clearfix" method="post" action="/ingresos">
+                    <p class="et_pb_contact_field " data-id="codbar" data-type="input">
+                      <label for="codbar" class="et_pb_contact_form_label">Código</label>
+                      <input type="text" id="codbar" class="input" value="" name="codbar" data-field_type="input" data-original_id="name" placeholder="Código" onfocusout="checkit()" />
+                    </p>
+                    <p class="et_pb_contact_field et_pb_contact_field_half" data-id="articulo" data-type="input">
+                      <label for="articulo_name" class="et_pb_contact_form_label">Marca</label>
+                      <input type="text" id="articulo_name" class="input" value="" name="articulo_name" placeholder="Marca" />
+                    </p>
+
+                    <p class="et_pb_contact_field et_pb_contact_field_half et_pb_contact_field_last" data-id="articulo" data-type="input">
+                      <label for="articulo_name" class="et_pb_contact_form_label">Modelo</label>
+                      <input type="text" size="2" id="articulo_name" class="input" value="" name="articulo_name" placeholder="Modelo" />
+                    </p>
+                    
+                    <p class="et_pb_contact_field et_pb_contact_field_last" data-id="message" data-type="text">
+                      <label for="descripcion" class="et_pb_contact_form_label">Descripcion del artículo</label>
+                      <textarea name="descripcion" id="descripcion" class="et_pb_contact_message input" data-field_type="text" data-original_id="message" placeholder="Descripcion del artículo"></textarea>
+                    </p>
+                    <div class="et_contact_bottom_container">
+                      <button type="submit" name="et_builder_submit_button"
+                              class="et_pb_contact_submit et_pb_button">Enviar</button>
+                    </div>
+                    <div class="et_pb_contact_right">
+                      <p class="clearfix">
+                        <span class="et_pb_contact_captcha_question">15 + 4</span> = <input type="text" size="2" class="input et_pb_contact_captcha" data-first_digit="15" data-second_digit="4" value="" name="et_pb_contact_captcha_0" data-required_mark="required" autocomplete="off">
+                      </p>
+                      </div>
+                  </form>
+                </div>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      function checkit() {
+        console.log("CALL!!");
+        let codbar = document.getElementById("codbar").value;
+        if (codbar.length < 2) {
+          document.getElementById("doWarn").innerHTML = "Incorrect";
+          return;
+        } else {
+          document.getElementById("doWarn").innerHTML = "Go Ahead";
+          let xmlhttp = new XMLHttpRequest();
+
+          console.log(codbar)
+          xmlhttp.responseType = "text";
+          console.log('app0');
+          xmlhttp.open("POST", "/ingresos/codbar", true);
+          xmlhttp.setRequestHeader("Content-Type", "text/plain");
+          xmlhttp.send(codbar);
+
+          xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+              result = this.responseText;
+              console.log(this.status);
+              if (result != '') {
+                result = result.split('-');
+                document.getElementById("articulo_name").value = result[0];
+                document.getElementById("descripcion").value = result[1];
+              }
+            } else console.log("Request unsuccessfull " + xmlhttp.status);
+          };
+        }
+      }
+      // Auto-Complete Text from Database | AJAX | MySQL | PHP | JS |  ---->  https://www.youtube.com/watch?v=V1r8_ROid6M
+    </script>
+    <footer>
+      <%- include('../static/footer'); %>
+    </footer>
+  </div>
+</body>
+
+</html>
