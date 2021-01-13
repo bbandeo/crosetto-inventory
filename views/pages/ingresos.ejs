@@ -53,12 +53,12 @@
               <div class="field columns ">
                 <div class="column is-half">
                   <p class="control has-icons-left">
-                    <input class="input" id="marca" name="marca" type="text" placeholder="Marca">
+                    <input class="input" id="marca" name="marca" type="" placeholder="Marca">
                   </p>
                 </div>
                 <div class="column is-half has-text-grey-lighter field control">
                   <p class="control has-icons-left field">
-                    <input class="input" id="modelo" name="modelo" type="text" placeholder="Modelo" />
+                    <input class="input" id="modelo" name="modelo" type="" placeholder="Modelo" />
                     </span>
                   </p>
                 </div>
@@ -102,17 +102,10 @@
     </main>
     <script>
       function checkit() {
-        console.log("CALL!!");
         let codbar = document.getElementById("codbar").value;
-        // if (codbar.length < 2) {
-        // return;
-        // } else {
         let xmlhttp = new XMLHttpRequest();
-
-        console.log(codbar)
         xmlhttp.responseType = "text";
-        console.log('app0');
-        xmlhttp.open("POST", "/ingresos/codbar", true);
+        xmlhttp.open("POST", "/codbar", true);
         xmlhttp.setRequestHeader("Content-Type", "text/plain");
         xmlhttp.send(codbar);
 

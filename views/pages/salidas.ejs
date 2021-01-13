@@ -15,7 +15,7 @@
 
     <main>
 
-      
+
       <div id="et-main-area">
         <div id="main-content">
           <div id="contacto" class="et_pb_row et_pb_row_10 et_pb_row_fullwidth">
@@ -37,13 +37,19 @@
             <br>
             <form method="post" action="/remove" id="remove">
               <div class="field columns">
-                <div class="column is-four-fifths">
+                <div class="column is-half">
                   <p class="control has-icons-left">
                     <input class="input" type="" id="codbar" name="codbar" placeholder="Código" onfocusout="checkit()" />
                   </p>
                 </div>
                 <!-- <3591> - border-color: #e6ad30; -->
-                <div class="field column">
+                <div class="column ">
+                  <p class="control has-icons-left ">
+                    <input class="input" type="" id="articulo" name="articulo" placeholder="Articulo" disabled />
+                  </p>
+                </div>
+
+                <div class="field column  is-one-fifth">
                   <p class="control has-icons-left">
                     <input class="input" id="cantidad" name="cantidad" type="number" placeholder="Cantidad" required>
                   </p>
@@ -51,18 +57,14 @@
               </div>
 
               <div class="field columns ">
-                <div class="column is-half">
+                <!-- <div class="field"> -->
+                <div class="column is-full">
                   <p class="control has-icons-left">
-                    <input class="input" id="marca" name="marca" type="text" placeholder="Marca">
-                  </p>
-                </div>
-                <div class="column is-half has-text-grey-lighter field control">
-                  <p class="control has-icons-left field">
-                    <input class="input" id="modelo" name="modelo" type="text" placeholder="Modelo" />
-                    </span>
+                    <input class="input" id="destino" name="destino" type="" placeholder="Destino">
                   </p>
                 </div>
               </div>
+
 
               <div class="field is-horizontal">
                 <div class="field-body">
@@ -77,7 +79,7 @@
 
             <div class="et_pb_divider_internal"></div>
             <div class="et_contact_bottom_container">
-              <button type="submit" name="et_builder_submit_button" form="insert" class="et_pb_contact_submit et_pb_button">Enviar</button>
+              <button type="submit" name="et_builder_submit_button" form="insert" class="et_pb_contact_submit et_pb_button">Retirar</button>
             </div>
           </div>
         </div>
@@ -101,17 +103,10 @@
     </main>
     <script>
       function checkit() {
-        console.log("CALL!!");
         let codbar = document.getElementById("codbar").value;
-        // if (codbar.length < 2) {
-        // return;
-        // } else {
         let xmlhttp = new XMLHttpRequest();
-
-        console.log(codbar)
         xmlhttp.responseType = "text";
-        console.log('app0');
-        xmlhttp.open("POST", "/ingresos/codbar", true);
+        xmlhttp.open("POST", "/codbar", true);
         xmlhttp.setRequestHeader("Content-Type", "text/plain");
         xmlhttp.send(codbar);
 
@@ -121,19 +116,9 @@
             console.log(this.status);
             if (result != '') {
               result = result.split('-');
-              document.getElementById("marca").value = result[0];
-              document.getElementById("marca").parentElement.className = "control has-icons-left et_pb_contact_form_container";
-              document.getElementById("modelo").value = result[1];
-              document.getElementById("modelo").parentElement.className = "control has-icons-left et_pb_contact_form_container";
-              document.getElementById("descripcion").value = result[2];
-            }
-          } else {
-            document.getElementById("marca").value = '';
-            document.getElementById("marca").parentElement.className = 'control has-icons-left';
+              document.getElementById("articulo").value = `${result[0]} ${result[1]}`;
 
-            document.getElementById("modelo").value = '';
-            document.getElementById("modelo").parentElement.className = 'control has-icons-left';
-            document.getElementById("descripcion").value = '';
+            }
           }
         };
       }

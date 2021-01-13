@@ -6,7 +6,7 @@
 [ ] - Botón Opciones adicionales a la hora de ingresar artículos, detalle de "remito, proveedor, ubicacion almacén"
 [ ] - Botón Opciones adicionales a la hora de retirar artículos, detalle de "destino" 
 [ ] - Cuando carga ingreso o salida que automáticamente se posicione en el input codbar
-[ ] - 
+[ ] - Falta hacer la pagina perfil - que le vamos a poner ahi?
 [ ] - 
 [ ] - LOGIN - Cambiar color del botón
 [ ] - EN BURGER MENU CAMBIAR LOS COLORES DEL TEXTO
