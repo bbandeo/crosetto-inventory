@@ -9,5 +9,5 @@
 [ ] - Falta hacer la pagina perfil - que le vamos a poner ahi?
 [ ] - 
 [ ] - LOGIN - Cambiar color del botón
-[ ] - EN BURGER MENU CAMBIAR LOS COLORES DEL TEXTO
-[ ] - 
+[✔] - EN BURGER MENU CAMBIAR LOS COLORES DEL TEXTO
+[ ] - Middleware req.session.user - Iniciar sesión si usuario iniciado tiene que desloguear

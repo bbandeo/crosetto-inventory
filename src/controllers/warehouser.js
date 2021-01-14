@@ -1,14 +1,11 @@
 require('dotenv').config();
 const connection = require('../configs/db');
 
-
 exports.ingresos = (req, res) => {
     // app.post('/ingresos', (req, res) => {
     let data = req.body;
     let user = req.session.user
     let query = `INSERT into articulo(codbar,descripcion,nombre,operario_ingreso) values('${data.codbar}','${data.marca}','${data.descripcion}','${user.id}')`;
-    // console.log(data);
-    // console.log(req.session.user);
     if (user != undefined) {
         connection.query(query, function (error, results, fields) {
             if (!error) {
@@ -68,7 +65,7 @@ exports.insert = (req, res) => {
             connection.query({ sql: `INSERT INTO articulo(codbar,descripcion,nombre,operario_ingreso) VALUES ?`, values: [inserts] }, (error, results, fields) => {
                 if (!error) {
                     console.log("Agregado exitosamente!");
-                    res.render('pages/index', { title: 'Agregado exitosamente!' });
+                    res.render('pages/ingresos', { title: 'Agregado exitosamente!' });
                 } else {
                     console.log(error);
                     res.render('pages/ingresos', { title: 'Falló' });

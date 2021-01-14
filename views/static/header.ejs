@@ -10,12 +10,15 @@
           <span></span>
           <span></span>
           <span></span>
+          <!-- <span class="has-text-success"></span>
+          <span class="has-text-warning"></span>
+          <span class="has-text-danger"></span> -->
         </span>
       </div>
       <div id="navMenu" class="navbar-menu">
         <div class="navbar-end">
-          <a class="navbar-item " href="/" aria-current="page">INICIO</a>
-          <a class="navbar-item " href="/ingresos" aria-current="page">INGRESO</a>
+          <a class="navbar-item" href="/" aria-current="page">INICIO</a>
+          <a class="navbar-item" href="/ingresos" aria-current="page">INGRESO</a>
           <a class="navbar-item" href="/salidas" aria-current="page">SALIDA</a>
           <% if(locals.user){ %>
 
@@ -48,8 +51,11 @@
       burger.addEventListener('click', () => {
         burger.classList.toggle('is-active');
         nav.classList.toggle('is-active');
-        // nav.classList.toggle('has-text-warning');
         nav.style.backgroundColor = "#323232";
+        let element = nav.querySelectorAll("a");
+        for (i in element) {
+          element[i].style.color = 'white'
+        }
       });
     })();
   </script>

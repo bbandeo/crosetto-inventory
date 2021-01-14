@@ -18,13 +18,20 @@ exports.home = (req, res) => {
     if (req.session.user == undefined) {
         res.redirect('/login');
     } else {
-        res.locals.user = req.session.user;
+
+        let comments = [
+            {author: "Adam", content: "I personally have never encountered a different opinion"},
+            {author: "Ryan", content: "But what about Ligers? Are they good pets?"},
+            {author: "Nick", content: "This woman is a genius!"}
+        ];
+
         let user = res.locals.user
         connection.query('SELECT * from info_articulo', (error, results, fields) => {
             if (error) throw error;
             res.render('pages/index', {
-                title: `BIENVENIDO ${user}`,
-                articulo: results
+                title: `BIENVENIDO ${user.username}`,
+                articulo: results,
+                comments: comments
             });
         });
     }
@@ -32,10 +39,8 @@ exports.home = (req, res) => {
 
 exports.login = (req, res) => {
     // app.post('/login', (req, res) => {
-    console.log(req.body);
     let usr = req.body;
     usr.uname = usr.uname.toUpperCase();
-    console.log(usr.uname);
     connection.query(`SELECT * from operario where username="${usr.uname}"`, (err, rows, fields) => {
         if (!err) {
             console.log('The solution is: ', rows[0]);
@@ -59,8 +64,6 @@ exports.register = (req, res) => {
     let data = req.body
     data.uname = data.uname.toUpperCase();
     let query = `SELECT * from operario where username="${data.uname}"`;
-
-    // let pwwd = pwHash(data.pwd);
     if (data.token == process.env.TOKEN) {
         connection.query(query, (err, rows, fields) => {
             if (rows.length > 0) {

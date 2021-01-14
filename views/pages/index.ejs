@@ -14,7 +14,7 @@
     </header>
 
     <main>
-      <div id="et-main-area" >
+      <div id="et-main-area">
         <div id="main-content" class="center">
           <img src="../../img/Almacenes-baja-temperatura.jpg" style="
           border-radius: 2%; opacity: 90%;" alt="Crosetto Ingeniería S.A." />
@@ -29,12 +29,120 @@
           width: 30%;
         }
       </style>
-    </main>
 
 
-    <footer>
-      <%- include('../static/footer'); %>
-    </footer>
+
+      <br />
+      <br />
+
+      <!-- <div id="search-container " style="margin-left: 10px;"> -->
+      <form method="post" action="/" name="home">
+        <div class="field columns " style="padding: 0 25% 0 15%;">
+          <div class="column is-one-fifth">
+
+            <div class="select is-medium">
+
+              <!-- <select name="search" onchange="this.form.submit()"> -->
+              <select name="search">
+                <!-- <option type="submit" form="home">Articulo</option> -->
+                <option value="articulo">Articulo</option>
+                <option value="info_articulo">Codigo</option>
+                <option value="fecha">Fecha</option>
+                <option value="ubicacion">Ubicacion</option> <!-- ACA TAMBIEN VA DESPACHADO -->
+                <option value="proveedor">Proveedor</option>
+                <option value="destino">Destino</option>
+                <option value="remito">Remito</option>
+              </select>
+
+            </div>
+
+          </div>
+          <!-- <3591> - border-color: #e6ad30; -->
+          <div class="column ">
+            <p class="control has-icons-left">
+              <input class="input is-medium" id="valor" name="valor" type="" placeholder="" required>
+            </p>
+          </div>
+          <div class="column is-one-fifth">
+            <div class="btn_container">
+              <!-- <button type="submit" name="search" form="home" class="et_pb_button" style="border-radius: 0%;">🔎 buscar</button> -->
+              <button type="submit" class="et_pb_contact_submit et_pb_button">buscar</button>
+            </div>
+          </div>
+      </form>
+  </div>
+
+  <br />
+  <br />
+
+  <div class="box" style="margin: 0 20% 0 30%;">
+  <div class="box">
+      <table id="table">
+    <thead>
+      <tr>
+        <th>Codigo</th>
+        <th>Marca</th>
+        <th>Modelo</th>
+        <th>Tamaño</th>
+        <th>Descripcion</th>
+        <th>ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% respuestas.forEach(function(respuesta){ %>
+        <tr>
+          <td>
+            <%= respuesta.codbar %>
+          </td>
+          <td>
+            <%= respuesta.marca %>
+          </td>
+          <td>
+            <%= respuesta.modelo %>
+          </td>
+          <td>
+            <%= respuesta.tamano %>
+          </td>
+          <td>
+            <%= respuesta.descripcion %>
+          </td>
+          <td>
+            <%= respuesta.id %>
+          </td>
+        </tr>
+        <% }) %>
+    </tbody>
+  </table>
+  </div>
+
+
+
+
+
+  <!-- </div> -->
+  <script>
+        // in DOM ready function!
+        // function enviar() {
+
+        //   let xmlhttp = new XMLHttpRequest();
+        //   xmlhttp.responseType = "text";
+        //   xmlhttp.open("POST", "/", true);
+        //   xmlhttp.setRequestHeader("Content-Type", "text/plain");
+        //   xmlhttp.send("codbar");
+
+        //   xmlhttp.onreadystatechange = function () {
+
+
+        //     $('[name="home"]').change(function () {
+        //       $(this).closest('form').submit();
+        //     });
+  </script>
+  </main>
+
+
+  <footer>
+    <%- include('../static/footer'); %>
+  </footer>
   </div>
 </body>
 
