@@ -3,6 +3,7 @@
 
 <head>
   <%- include('../static/head', {tituloSeccion: title}); %>
+
 </head>
 
 <body class="home page-template-default page page-id-798 custom-background et_pb_button_helper_class et_fixed_nav et_show_nav et_primary_nav_dropdown_animation_fade et_secondary_nav_dropdown_animation_fade et_header_style_left et_pb_footer_columns4 et_cover_background et_pb_gutter windows et_pb_gutters3 et_pb_pagebuilder_layout et_no_sidebar et_divi_theme et-db et_minified_js et_minified_css chrome"
@@ -14,12 +15,12 @@
     </header>
 
     <main>
-      <div id="et-main-area">
+      <!-- <div id="et-main-area">
         <div id="main-content" class="center">
           <img src="../../img/Almacenes-baja-temperatura.jpg" style="
           border-radius: 2%; opacity: 90%;" alt="Crosetto Ingeniería S.A." />
         </div>
-      </div>
+      </div> -->
       <style>
         .center {
           display: block;
@@ -30,14 +31,12 @@
         }
       </style>
 
-
-
       <br />
       <br />
 
       <!-- <div id="search-container " style="margin-left: 10px;"> -->
       <form method="post" action="/" name="home">
-        <div class="field columns " style="padding: 0 25% 0 15%;">
+        <div class="field columns " style="padding: 0 25% 0 15%; margin-left: auto; margin-right: auto;">
           <div class="column is-one-fifth">
 
             <div class="select is-medium">
@@ -75,9 +74,8 @@
   <br />
   <br />
 
-  <div class="box" style="margin: 0 20% 0 30%;">
-  <div class="box">
-      <table id="table">
+  <!-- <div class="box" style="margin: 0 20% 0 30%;"> -->
+  <table class="table table-sortable styled-table" style="margin-left: auto; margin-right: auto;">
     <thead>
       <tr>
         <th>Codigo</th>
@@ -89,37 +87,36 @@
       </tr>
     </thead>
     <tbody>
-      <% respuestas.forEach(function(respuesta){ %>
-        <tr>
-          <td>
-            <%= respuesta.codbar %>
-          </td>
-          <td>
-            <%= respuesta.marca %>
-          </td>
-          <td>
-            <%= respuesta.modelo %>
-          </td>
-          <td>
-            <%= respuesta.tamano %>
-          </td>
-          <td>
-            <%= respuesta.descripcion %>
-          </td>
-          <td>
-            <%= respuesta.id %>
-          </td>
-        </tr>
-        <% }) %>
+      <% if(typeof(respuestas) !="undefined" ){ %>
+        <% respuestas.forEach(function(respuesta){ %>
+          <tr>
+            <td>
+              <%= respuesta.codbar %>
+            </td>
+            <td>
+              <%= respuesta.marca %>
+            </td>
+            <td>
+              <%= respuesta.modelo %>
+            </td>
+            <td>
+              <%= respuesta.tamano %>
+            </td>
+            <td>
+              <%= respuesta.descripcion %>
+            </td>
+            <td>
+              <%= respuesta.id %>
+            </td>
+          </tr>
+          <% }); %>
+            <% } %>
     </tbody>
   </table>
-  </div>
 
 
-
-
-
-  <!-- </div> -->
+  
+  <script type="text/javascript" src="../../src/tableSorter.js" id="jquery-core-js"></script>
   <script>
         // in DOM ready function!
         // function enviar() {

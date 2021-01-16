@@ -50,7 +50,10 @@ exports.login = (req, res) => {
                     id: rows[0].id,
                     username: rows[0].username.toUpperCase(),
                 };
-                res.redirect('/');
+                res.render('pages/index', {
+                    title: `BIENVENIDO`,
+                    respuestas: []
+                });
             } else {
                 res.render('pages/login', { title: "Login falló. Intenta nuevamente", failed: true });
             }

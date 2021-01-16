@@ -38,21 +38,12 @@ const { salidas } = require('./src/controllers/category');
 
 app.post("/", function (req, res) {
     let { search, valor } = req.body;
-    console.log(req.body); // { search: 'Articulo', valor: '33',}
-    console.log("Post");
 
-
-    // SELECT column_name(s)
-    // FROM table1
-    // INNER JOIN table2
-    // ON table1.column_name = table2.column_name;
+    const respuesta = [];
 
 
     connection.query(`SELECT * from info_articulo INNER JOIN articulo ON info_articulo.codbar = articulo.codbar WHERE info_articulo.codbar = ${valor} `, (error, results, fields) => {
         if (error) throw error;
-        const respuesta = [];
-    
-
         results.forEach((i) => {
             respuesta.push({
                id: i.id, 
@@ -77,31 +68,12 @@ app.post("/", function (req, res) {
                destino: i.destino
             })
         });
-        console.log(respuesta.length);
+
         res.render('pages/index', {
             title: `BIENVENIDO`,
             respuestas: respuesta
         });
-
     });
-
-
-    // var sqlStatement = req.body.sql;
-    // connection.connect(function(err) {
-    //     if (err) {
-    //         console.error('error connecting: ' + err.stack);
-    //         return;
-    //     }
-    //     console.log('connected as id ' + connection.threadId);
-    // });
-    // if (err) {
-    //     throw err;
-    // } else {
-    //     obj = {
-    //         print: result
-    //     };
-    //     res.render('query', obj);
-    // }
 });
 
 app.use((req, res, next) => {
@@ -115,7 +87,6 @@ app.listen(port, () => {
 
 function auth(req, res, next) {
     res.locals.user = req.session.user;
-    console.log("auth")
     next();
 }
 
