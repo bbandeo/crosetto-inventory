@@ -74,3 +74,40 @@ exports.insert = (req, res) => {
         });
     } // IF !USER
 }
+
+exports.search = (req, res) => {
+    
+    let { valor } = req.body;
+    const respuesta = [];
+    connection.query(`SELECT * from info_articulo INNER JOIN articulo ON info_articulo.codbar = articulo.codbar WHERE info_articulo.codbar = ${valor} `, (error, results, fields) => {
+        if (error) throw error;
+        results.forEach((i) => {
+            respuesta.push({
+                id: i.id,
+                codbar: i.codbar,
+                tipo: i.tipo,
+                marca: i.marca,
+                modelo: i.modelo,
+                observaciones: i.observaciones,
+                tamano: i.tamano,
+                created_at: i.created_at,
+                updated_at: i.updated_at,
+                deleted_at: i.deleted_at,
+                descripcion: i.descripcion,
+                nombre: i.nombre,
+                operario_ingreso: i.operario_ingreso,
+                operario_retiro: i.operario_retiro,
+                fecha_alta: i.fecha_alta,
+                fecha_baja: i.fecha_baja,
+                subconjunto: i.subconjunto,
+                ubicacion_almacen: i.ubicacion_almacen,
+                proveedor_: i.proveedor_,
+                destino: i.destino
+            });
+        });
+        res.render('pages/index', {
+            title: `BIENVENIDO`,
+            respuestas: respuesta
+        });
+    });
+}
