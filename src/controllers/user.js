@@ -20,9 +20,9 @@ exports.home = (req, res) => {
     } else {
 
         let comments = [
-            {author: "Adam", content: "I personally have never encountered a different opinion"},
-            {author: "Ryan", content: "But what about Ligers? Are they good pets?"},
-            {author: "Nick", content: "This woman is a genius!"}
+            { author: "Adam", content: "I personally have never encountered a different opinion" },
+            { author: "Ryan", content: "But what about Ligers? Are they good pets?" },
+            { author: "Nick", content: "This woman is a genius!" }
         ];
 
         let user = res.locals.user
@@ -50,8 +50,10 @@ exports.login = (req, res) => {
                     id: rows[0].id,
                     username: rows[0].username.toUpperCase(),
                 };
+
+                res.locals.user = req.session.user;
                 res.render('pages/index', {
-                    title: `BIENVENIDO`,
+                    title: `BIENVENIDO desde login`,
                     respuestas: []
                 });
             } else {

@@ -33,7 +33,7 @@ category_routes(app);
 user_route(app);
 
 const connection = require('./src/configs/db');
-const { salidas } = require('./src/controllers/category');
+// const { salidas } = require('./src/controllers/category');
 
 
 app.post("/", function (req, res) {
@@ -46,29 +46,28 @@ app.post("/", function (req, res) {
         if (error) throw error;
         results.forEach((i) => {
             respuesta.push({
-               id: i.id, 
-               codbar: i.codbar,
-               tipo: i.tipo,
-               marca: i.marca,
-               modelo: i.modelo,
-               observaciones: i.observaciones,
-               tamano: i.tamano,
-               created_at: i.created_at,
-               updated_at: i.updated_at,
-               deleted_at: i.deleted_at,
-               descripcion: i.descripcion,
-               nombre: i.nombre,
-               operario_ingreso: i.operario_ingreso,
-               operario_retiro: i.operario_retiro, 
-               fecha_alta: i.fecha_alta, 
-               fecha_baja: i.fecha_baja, 
-               subconjunto: i.subconjunto, 
-               ubicacion_almacen: i.ubicacion_almacen,
-               proveedor_: i.proveedor_, 
-               destino: i.destino
-            })
+                id: i.id,
+                codbar: i.codbar,
+                tipo: i.tipo,
+                marca: i.marca,
+                modelo: i.modelo,
+                observaciones: i.observaciones,
+                tamano: i.tamano,
+                created_at: i.created_at,
+                updated_at: i.updated_at,
+                deleted_at: i.deleted_at,
+                descripcion: i.descripcion,
+                nombre: i.nombre,
+                operario_ingreso: i.operario_ingreso,
+                operario_retiro: i.operario_retiro,
+                fecha_alta: i.fecha_alta,
+                fecha_baja: i.fecha_baja,
+                subconjunto: i.subconjunto,
+                ubicacion_almacen: i.ubicacion_almacen,
+                proveedor_: i.proveedor_,
+                destino: i.destino
+            });
         });
-
         res.render('pages/index', {
             title: `BIENVENIDO`,
             respuestas: respuesta
