@@ -75,6 +75,7 @@ exports.insert = (req, res) => {
     } // IF !USER
 }
 
+
 exports.search = (req, res) => {
     
     let { valor } = req.body;
