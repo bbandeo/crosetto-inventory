@@ -69,7 +69,7 @@
   <br />
 
   <!-- <div class="box" style="margin: 0 20% 0 30%;"> -->
-  <table class="table table-sortable styled-table" style="margin-left: auto; margin-right: auto;">
+  <table class="table table-sortable tablemanager styled-table" style="margin-left: auto; margin-right: auto;">
     <% if(typeof(respuestas) !="undefined" ){ %>
     <thead>
       <tr>
@@ -111,7 +111,36 @@
 
 
 
-  <script type="text/javascript" src="../../src/tableSorter.js" id="jquery-core-js"></script>
+  <!-- <script type="text/javascript" src="../../src/tableSorter.js" id="jquery-core-js"></script> -->
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../../src/tableManager.js"></script>
+	<script type="text/javascript">
+		// basic usage
+		$('.tablemanager').tablemanager({
+			firstSort: [[3,0],[2,0],[1,'asc']],
+			disable: ["last"],
+			appendFilterby: true,
+			dateFormat: [[4,"mm-dd-yyyy"]],
+			debug: true,
+			vocabulary: {
+    voc_filter_by: 'Filter By',
+    voc_type_here_filter: 'Filtro...',
+    voc_show_rows: 'Rows Per Page'
+  },
+			pagination: true,
+			showrows: [5,10,20,50,100],
+			disableFilterBy: [1]
+		});
+		$('.tablemanager').tablemanager();
+	</script>
+
+
+
+
+
+
 
   </main>
 
