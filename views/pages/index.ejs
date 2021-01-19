@@ -34,7 +34,7 @@
 
 
       <!-- <div id="search-container " style="margin-left: 10px;"> -->
-      <form method="post" action="/" name="home">
+      <form method="post" action="/" name="home" id="search">
         <div class="field columns " style="padding: 0 15% 0 15%; margin-left: auto; margin-right: auto;">
           <div class="column is-one-fifth">
 
@@ -65,89 +65,105 @@
         </div>
       </form>
       
-  <br />
-  <br />
+      <br />
+      <br />
+      
+      <!-- <div class="box" style="margin: 0 20% 0 30%;"> -->
+        <% if(typeof(respuestas) !="undefined" ){ %>
+          <table class="table table-sortable tablemanager styled-table" style="margin-left: auto; margin-right: auto;">
+            <thead>
+              <tr>
+                <th>Codigo</th>
+                <th>ID</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Tamaño</th>
+                <th style="width: 60%;">Comentarios</th>
+              </tr>
+            </thead>
+            <div id="lock-modal"></div>
+            <div id="loading-circle"></div>
+          <tbody>
 
-  <!-- <div class="box" style="margin: 0 20% 0 30%;"> -->
-  <table class="table table-sortable tablemanager styled-table" style="margin-left: auto; margin-right: auto;">
-    <% if(typeof(respuestas) !="undefined" ){ %>
-    <thead>
-      <tr>
-        <th>Codigo</th>
-        <th>ID</th>
-        <th>Marca</th>
-        <th>Modelo</th>
-        <th>Tamaño</th>
-        <th style="width: 60%;">Comentarios</th>
-      </tr>
-    </thead>
-    <tbody>
-
-        <% respuestas.forEach(function(respuesta){ %>
-          <tr>
-            <td>
-              <%= respuesta.codbar %>
-            </td>
-            <td>
-              <%= respuesta.id %>
-            </td>
-            <td>
-              <%= respuesta.marca %>
-            </td>
-            <td>
-              <%= respuesta.modelo %>
-            </td>
-            <td>
-              <%= respuesta.tamano %>
-            </td>
-            <td>
-              <%= respuesta.observaciones %>
-            </td>
-          </tr>
-          <% }); %>
-            <% } %>
-    </tbody>
-  </table>
-
-
-
-  <!-- <script type="text/javascript" src="../../src/tableSorter.js" id="jquery-core-js"></script> -->
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script type="text/javascript" src="../../src/tableManager.js"></script>
-	<script type="text/javascript">
-		// basic usage
-		$('.tablemanager').tablemanager({
-			firstSort: [[3,0],[2,0],[1,'asc']],
-			disable: ["last"],
-			appendFilterby: true,
-			dateFormat: [[4,"mm-dd-yyyy"]],
-			debug: true,
-			vocabulary: {
-    voc_filter_by: 'Filter By',
-    voc_type_here_filter: 'Filtro...',
-    voc_show_rows: 'Rows Per Page'
-  },
-			pagination: true,
-			showrows: [5,10,20,50,100],
-			disableFilterBy: [1]
-		});
-		$('.tablemanager').tablemanager();
-	</script>
+            <% respuestas.forEach(function(respuesta){ %>
+              <tr>
+                <td>
+                  <%= respuesta.codbar %>
+                </td>
+                <td>
+                  <%= respuesta.id %>
+                </td>
+                <td>
+                  <%= respuesta.marca %>
+                </td>
+                <td>
+                  <%= respuesta.modelo %>
+                </td>
+                <td>
+                  <%= respuesta.tamano %>
+                </td>
+                <td>
+                  <%= respuesta.observaciones %>
+                </td>
+              </tr>
+              <% }); %>
+                <% } %>
+          </tbody>
+        </table>
 
 
 
+        <!-- <script type="text/javascript" src="../../src/tableSorter.js" id="jquery-core-js"></script> -->
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript" src="../../src/tableManager.js"></script>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            lockModal.css("display", "none");
+            loadingCircle.css("display", "none");
+          });
+          const lockModal = $("#lock-modal");
+          const loadingCircle = $("#loading-circle");
+          const form = $("#search");
+
+          form.on('submit', function (e) {
+            // lock down the form
+            lockModal.css("display", "block");
+            loadingCircle.css("display", "block");
+          });
+          // basic usage
+          $('.tablemanager').tablemanager({
+            firstSort: [[3, 0], [2, 0], [1, 'asc']],
+            disable: ["last"],
+            appendFilterby: true,
+            dateFormat: [[4, "mm-dd-yyyy"]],
+            debug: true,
+            vocabulary: {
+              voc_filter_by: 'Filter By',
+              voc_type_here_filter: 'Filtro...',
+              voc_show_rows: 'Rows Per Page'
+            },
+            pagination: true,
+            showrows: [20, 50, 100, 500],
+            disableFilterBy: [1]
+          });
+          $('.tablemanager').tablemanager();
+          // lockModal.css("display", "none");
+          //   loadingCircle.css("display", "none");
+        </script>
 
 
 
 
-  </main>
 
 
-  <footer>
-    <%- include('../static/footer'); %>
-  </footer>
+    </main>
+
+
+    <footer>
+      <%- include('../static/footer'); %>
+    </footer>
   </div>
 </body>
 
